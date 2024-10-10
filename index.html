@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menghitung Bunga</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hidden { display: none; }
+        body {
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+        .hasil, .hasil2 {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container text-center">
+            <h2><a href="#" class="text-white">Bunga</a></h2>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <form action="" method="POST">
+            <div class="form-group">
+                <p>Pilih Jenis Bunga:</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="status" id="Tunggal" value="Tunggal" onclick="ChangeForm(this)">
+                    <label class="form-check-label" for="Tunggal">Bunga Tunggal</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="status" id="Majemuk" value="Majemuk" onclick="ChangeForm(this)">
+                    <label class="form-check-label" for="Majemuk">Bunga Majemuk</label>
+                </div>
+            </div>
+
+            <div class="Bunga-Tunggal hidden">
+                <h4>Hitung Bunga Tunggal</h4>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="Inputnumber" id="Inputnumber" placeholder="Masukan Pinjaman" required>
+                </div>
+
+                <div class="form-group">
+                    <p>Pilih Lama Pinjaman:</p>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="lama" id="Bulan" value="Bulan" onclick="UbahInputLama(this)">
+                        <label class="form-check-label" for="Bulan">Bulan</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="lama" id="Tahun" value="Tahun" onclick="UbahInputLama(this)">
+                        <label class="form-check-label" for="Tahun">Tahun</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="lama" id="Triwulan" value="Triwulan" onclick="UbahInputLama(this)">
+                        <label class="form-check-label" for="Triwulan">Triwulan</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="bulan hidden">
+                        <input type="number" class="form-control" name="InputLamaBulan" id="InputLamaBulan" placeholder="Lama Pinjaman/Bulan">
+                    </div>
+                    <div class="triwulan hidden">
+                        <input type="number" class="form-control" name="InputLamaTriwulan" id="InputLamaTriwulan" placeholder="Lama Pinjaman/Triwulan">
+                    </div>
+                    <div class="tahun hidden">
+                        <input type="number" class="form-control" name="InputLamaTahun" id="InputLamaTahun" placeholder="Lama Pinjaman/Tahun">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" name="Inputbunga" id="Inputbunga" placeholder="Masukan bunga (%)" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" value="Hitung Tunggal" onclick="Submit1()">
+                </div>
+
+                <div class="hasil"></div>
+            </div>
+
+            <div class="Bunga-Majemuk hidden">
+                <h4>Hitung Bunga Majemuk</h4>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="Inputnumber2" id="Inputnumber2" placeholder="Masukan Pinjaman" required>
+                </div>
+
+                <div class="form-group">
+                    <p>Pilih Lama Pinjaman:</p>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="lama2" id="Bulan2" value="Bulan" onclick="UbahInputLama2(this)">
+                        <label class="form-check-label" for="Bulan2">Bulan</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="lama2" id="Tahun2" value="Tahun" onclick="UbahInputLama2(this)">
+                        <label class="form-check-label" for="Tahun2">Tahun</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="lama2" id="Triwulan2" value="Triwulan" onclick="UbahInputLama2(this)">
+                        <label class="form-check-label" for="Triwulan2">Triwulan</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="bulan2 hidden">
+                        <input type="number" class="form-control" name="InputLamaBulan2" id="InputLamaBulan2" placeholder="Lama Pinjaman/Bulan">
+                    </div>
+                    <div class="triwulan2 hidden">
+                        <input type="number" class="form-control" name="InputLamaTriwulan2" id="InputLamaTriwulan2" placeholder="Lama Pinjaman/Triwulan">
+                    </div>
+                    <div class="tahun2 hidden">
+                        <input type="number" class="form-control" name="InputLamaTahun2" id="InputLamaTahun2" placeholder="Lama Pinjaman/Tahun">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" name="Inputbunga2" id="Inputbunga2" placeholder="Masukan bunga (%)" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" value="Hitung Majemuk" onclick="Submit2()">
+                </div>
+
+                <div class="hasil2"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function ChangeForm(e) {
+            document.querySelector('.Bunga-Tunggal').classList.add('hidden');
+            document.querySelector('.Bunga-Majemuk').classList.add('hidden');
+
+            if (e.value === 'Tunggal') {
+                document.querySelector('.Bunga-Tunggal').classList.remove('hidden');
+            } else if (e.value === 'Majemuk') {
+                document.querySelector('.Bunga-Majemuk').classList.remove('hidden');
+            }
+        }
+
+        function UbahInputLama(e) {
+            const PilihanInputBulan = document.querySelector('.bulan');
+            const PilihanInputTahun = document.querySelector('.tahun');
+            const PilihanInputTriwulan = document.querySelector('.triwulan');
+
+            PilihanInputBulan.classList.add('hidden');
+            PilihanInputTahun.classList.add('hidden');
+            PilihanInputTriwulan.classList.add('hidden');
+
+            if (e.value === 'Bulan') {
+                PilihanInputBulan.classList.remove('hidden');
+            } else if (e.value === 'Tahun') {
+                PilihanInputTahun.classList.remove('hidden');
+            } else if (e.value === 'Triwulan') {
+                PilihanInputTriwulan.classList.remove('hidden');
+            }
+        }
+
+        function UbahInputLama2(e) {
+            const PilihanInputBulan2 = document.querySelector('.bulan2');
+            const PilihanInputTahun2 = document.querySelector('.tahun2');
+            const PilihanInputTriwulan2 = document.querySelector('.triwulan2');
+
+            PilihanInputBulan2.classList.add('hidden');
+            PilihanInputTahun2.classList.add('hidden');
+            PilihanInputTriwulan2.classList.add('hidden');
+
+            if (e.value === 'Bulan') {
+                PilihanInputBulan2.classList.remove('hidden');
+            } else if (e.value === 'Tahun') {
+                PilihanInputTahun2.classList.remove('hidden');
+            } else if (e.value === 'Triwulan') {
+                PilihanInputTriwulan2.classList.remove('hidden');
+            }
+        }
+
+        function Submit1() {
+            const Inputnumber = parseFloat(document.getElementById('Inputnumber').value);
+            const InputLamaBulan = parseFloat(document.getElementById('InputLamaBulan').value);
+            const InputLamaTahun = parseFloat(document.getElementById('InputLamaTahun').value) * 12;
+            const InputLamaTriwulan = parseFloat(document.getElementById('InputLamaTriwulan').value) * 3;
+            const Inputbunga = parseFloat(document.getElementById('Inputbunga').value) / 100;
+
+            let lama = 0;
+
+            if (!isNaN(InputLamaBulan)) {
+                lama = InputLamaBulan;
+            }
+            if (!isNaN(InputLamaTahun)) {
+                lama = InputLamaTahun;
+            }
+            if (!isNaN(InputLamaTriwulan)) {
+                lama = InputLamaTriwulan;
+            }
+
+            if (!isNaN(Inputnumber) && lama > 0 && !isNaN(Inputbunga)) {
+                const RumusTunggal = Inputnumber * Inputbunga * lama;
+                const Total = Inputnumber + RumusTunggal;
+                document.querySelector('.hasil').innerHTML = `Bunga = Rp ${numberWithCommas(RumusTunggal.toFixed(0))}<br>Total = Rp ${numberWithCommas(Total.toFixed(0))}`;
+            } else {
+                document.querySelector('.hasil').textContent = 'Mohon masukkan semua data dengan benar.';
+            }
+        }
+
+        function Submit2() {
+            const Inputnumber2 = parseFloat(document.getElementById('Inputnumber2').value);
+            const InputLamaBulan2 = parseFloat(document.getElementById('InputLamaBulan2').value);
+            const InputLamaTahun2 = parseFloat(document.getElementById('InputLamaTahun2').value) * 12;
+            const InputLamaTriwulan2 = parseFloat(document.getElementById('InputLamaTriwulan2').value) * 3;
+            const Inputbunga2 = parseFloat(document.getElementById('Inputbunga2').value) / 100;
+
+            let lama2 = 0;
+
+            if (!isNaN(InputLamaBulan2)) {
+                lama2 = InputLamaBulan2;
+            }
+            if (!isNaN(InputLamaTahun2)) {
+                lama2 = InputLamaTahun2;
+            }
+            if (!isNaN(InputLamaTriwulan2)) {
+                lama2 = InputLamaTriwulan2;
+            }
+
+            if (!isNaN(Inputnumber2) && lama2 > 0 && !isNaN(Inputbunga2)) {
+                const RumusMajemuk = Inputnumber2 * (Math.pow((1 + Inputbunga2), lama2) - 1);
+                const Total2 = Inputnumber2 + RumusMajemuk;
+                document.querySelector('.hasil2').innerHTML = `Bunga = Rp ${numberWithCommas(RumusMajemuk.toFixed(0))}<br>Total = Rp ${numberWithCommas(Total2.toFixed(0))}`;
+            } else {
+                document.querySelector('.hasil2').textContent = 'Mohon masukkan semua data dengan benar.';
+            }
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+</body>
+</html>
